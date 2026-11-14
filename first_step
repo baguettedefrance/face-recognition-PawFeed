@@ -1,0 +1,45 @@
+# PawFeed
+
+A cat food dispenser that recognizes who is coming: it only opens for the
+cats and stays closed for the dog.
+
+## Why this project?
+
+At home I have two cats, Kait and Noisette, and a dog, Skiff.
+The problem: Skiff eats the cats' food. I wanted a dispenser that can tell
+them apart on its own, with no human involved.
+
+## How does it work?
+
+1. An infrared camera (day and night) watches the area in front of the
+   dispenser.
+2. A Raspberry Pi 4 analyzes the image with an AI model that recognizes
+   a cat or a dog.
+3. If it's a cat, a stepper motor turns a 3D-printed auger that pushes
+   the food toward the bowl.
+4. If it's a dog, or if the model is not sure, nothing comes out.
+5. A web page shows the live status: green for a cat, red for a dog,
+   gray when there is nothing.
+
+## What I used
+
+- Raspberry Pi 4 (1 GB) running Raspberry Pi OS Lite 64-bit
+- Arducam IR-CUT day/night camera (OV5647, 5 MP)
+- 28BYJ-48 stepper motor with a ULN2003 driver
+- 3D-printed parts (hopper, auger, body) made on an
+  Elegoo Centauri Carbon 2 Combo
+- TensorFlow Lite AI model trained on the public Cats vs Dogs dataset
+  (Microsoft/Kaggle)
+- Python, Flask
+
+## What I gave up along the way
+
+- An RFID chip to recognize the cats: replaced by the camera.
+- A weight sensor to measure portions: dropped, calibration was too
+  unstable.
+- A trapdoor, then a disc system: replaced by the auger.
+
+## Credits
+
+- Cats vs Dogs dataset (Microsoft Research / Kaggle)
+- Built for Hack Club Forge
